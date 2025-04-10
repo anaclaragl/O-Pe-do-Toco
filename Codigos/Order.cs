@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Order")]
 public class Order : ScriptableObject
 {
-    private enum dietType{ Carnivore, Herbivore };
+    private enum dietType{ CARNIVORE, HERBIVORE };
 
     [Header("Item Description")]
     public string plateName;
