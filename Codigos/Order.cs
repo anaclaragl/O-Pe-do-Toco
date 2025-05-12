@@ -1,14 +1,9 @@
-using UnityEngine;
+public class Order{
+    public Dish dish;
+    public Customer customer;
 
-[CreateAssetMenu(menuName = "Order")]
-public class Order : ScriptableObject
-{
-    private enum dietType{ CARNIVORE, HERBIVORE };
-
-    [Header("Item Description")]
-    public string plateName;
-    [TextArea(10,10)]
-    public int price; //we can change to float later
-
-    public GameObject[] ingredients;
+    public Order(Dish dish, Customer customer){
+        dish = this.dish;
+        customer = this.customer;
+    }
 }
