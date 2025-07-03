@@ -4,7 +4,6 @@ public class OrderManager : MonoBehaviour{
     public Dish[] carnivoreDishes;
     public Dish[] herbivoreDishes;
     public Dish chosenDish;
-    public int randomDish;
     Action OnNewOrder;
     Action OnDeliveredOrder;
 
