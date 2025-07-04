@@ -26,6 +26,7 @@ public class Costumer : MonoBehaviour{
     public void SetChairDestination(){
         chair = chairManager.chairs[Random.Range(0, chairManager.chairs.Lenght)]
         agent.destination = chair.transform.position;
+        chair.Occupy();
     }
 
     public Sprite CheckOrderSatisfaction(Order _order){
