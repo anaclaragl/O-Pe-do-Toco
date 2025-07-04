@@ -2,18 +2,28 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class Costumer : MonoBehaviour{
+    [Header("Dish data")]
     DietType dietType;
     Order order;
     Sprite[] satisfactionIcons;
     Sprite balloonIcon;
     Vector3 balloonPosition;
-    int randomChair;
 
+    [Header("AI data")]
     NavMeshAgent agent;
     ChairManager chairManager;
     Chair chair;
+    Transform exit;
+
+    public enum State{
+        WALKING, //entering and leaving
+        IDLE, //waiting
+        EATING
+    }
+    public State state;
 
     public void Start(){
+        state = State.WALKING;
         agent = GetComponent<NavMeshAgent>();
         SetChairDestination();
     }
@@ -27,6 +37,14 @@ public class Costumer : MonoBehaviour{
         chair = chairManager.chairs[Random.Range(0, chairManager.chairs.Lenght)]
         agent.destination = chair.transform.position;
         chair.Occupy();
+    }
+
+    public void Sit(){
+        state = State.IDLE;
+    }
+
+    public void Eat(){
+        state = State.EATING;
     }
 
     public Sprite CheckOrderSatisfaction(Order _order){
@@ -54,5 +72,16 @@ public class Costumer : MonoBehaviour{
                 return satisfactionIcons[0];
                 break;
         }
+    }
+
+    public void Leave(){
+        PopUpSatisfaction();
+        StartCoroutine("WalkAway");
+    }
+
+    IEnumerator WalkAway(){
+        yield return new WaitForSeconds(2f);
+        state = State.WALKING;
+        agent.destination = exit;
     }
 }
