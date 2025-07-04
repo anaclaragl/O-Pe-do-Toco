@@ -29,7 +29,7 @@ public class Costumer : MonoBehaviour{
     }
 
     public Sprite CheckOrderSatisfaction(Order _order){
-        int score = 0; //defines how much will the costumer pay 
+        int score = 0; //defines how much the costumer will pay
         //2 = full price, 1 = half, 0 = 0
         
         if(order.dish.dietType == _order.dish.dietType){
